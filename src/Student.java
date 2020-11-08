@@ -2,7 +2,12 @@ import java.io.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -60,7 +65,6 @@ public class Student {
             if (studentTextFile.createNewFile()) {
                 System.out.println("File created: " + studentTextFile.getName());
                 templateForNewFile();
-
             }
             else {
                 System.out.println("Your file has been located.");
@@ -72,14 +76,17 @@ public class Student {
         }
     }
 
+    /*
+     * This method creates a basic template for all new student text files
+     */
     public static void templateForNewFile() {
         try {
             FileWriter writeCourseNames = new FileWriter(studentTextFile);
             PrintWriter printCourseNames = new PrintWriter(writeCourseNames);
-            printCourseNames.write("1) Alchemy Homework:\n2) Alchemy Quiz:\n3) Alchemy Exam:\n4) Alchemy Project:\n" +
-                    "5) Elemental Magic Homework:\n6) Elemental Magic Quiz:\n7) Elemental Magic Exam:\n8) Elemental " +
-                    "Magic Project:\n9) Necromancy Homework:\n10) Necromancy Quiz:\n11) Necromancy Exam:" +
-                    "\n12) Necromancy Project:");
+            printCourseNames.write("0) Alchemy Homework:\n1) Alchemy Quiz:\n2) Alchemy Exam:\n3) Alchemy Project:\n" +
+                    "4) Elemental Magic Homework:\n5) Elemental Magic Quiz:\n6) Elemental Magic Exam:\n7) Elemental " +
+                    "Magic Project:\n8) Necromancy Homework:\n9) Necromancy Quiz:\n10) Necromancy Exam:" +
+                    "\n11) Necromancy Project:");
             printCourseNames.close();
         }
         catch (IOException e) {
@@ -89,60 +96,20 @@ public class Student {
     }
 
     /*
-     * This method writes the course name, assignment type, and ArrayList of grades to the user's text file.
+     * This method allows a student's file to be edited
      *
-     * @param subject          The name of the course
-     * @param typeOfAssignment The type of assignment
-     * @param arrName          The ArrayList containing grades
+     * @param editThisLine The line in the text file to be edited (count starts with 0)
+     * @param arrName      ArrayList of grades being written to the text file
      */
-    public static void writeToFile(String subject, String typeOfAssignment, ArrayList<Integer> arrName) {
+    public static void editFile (int editThisLine, ArrayList<Integer> arrName) {
         try {
-            FileWriter writeGrades = new FileWriter(studentTextFile, true);
-            PrintWriter printTextFile = new PrintWriter(writeGrades);
-            printTextFile.write("|" + subject + " " + typeOfAssignment + " " + arrName + "| ");//edit this so that it simply adds list to specified line
-            printTextFile.close();
-        }
-        catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    /*
-     * This method reads a text file and replaces specified string with new string.
-     *
-     * @param
-     * @param
-     * @param
-     */
-    public static void editTextFile(File studentTextFile, String oldString, String newString) {
-        //may need: File fileTOBeModified = new File(filePath); to get this method to work.
-        String oldData = "";
-        BufferedReader buffReader = null;
-        FileWriter writer = null;
-
-        try {
-            buffReader = new BufferedReader(new FileReader(studentTextFile));
-            String line = buffReader.readLine();
-            while (line != null) {
-                oldData = oldData + line + System.lineSeparator();
-
-                line = buffReader.readLine();
-            }
-            String newData = oldData.replaceAll(oldString, newString);
-            writer = new FileWriter(studentTextFile);
-            writer.write(newData);
+            Path filePath = Paths.get(String.valueOf(studentTextFile));
+            List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+            lines.set(editThisLine, lines.get(editThisLine) + arrName);
+            Files.write(filePath, lines, StandardCharsets.UTF_8);
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            try {
-                buffReader.close();
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

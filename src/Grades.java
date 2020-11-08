@@ -50,7 +50,7 @@ public class Grades {
                    System.out.println("Your grade has NOT been saved.");
                }
                else {
-                   System.out.println("Invalid input.");
+                   System.out.println("Invalid input. Your grade has NOT been saved.");
                }
 
                System.out.println("Would you like to enter another Quiz grade? \n[y]Yes [n]No");
@@ -60,9 +60,8 @@ public class Grades {
                    continue;
                }
                else if (moreQuizResponse == 'n') {
-                   String subject = "Alchemy";
-                   String typeOfAssignment = "quiz";
-                   Student.writeToFile(subject, typeOfAssignment, alchQuizGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(1, alchQuizGrades);
                    Menu.menuOrExit();
                    break;
                }
@@ -98,9 +97,8 @@ public class Grades {
                if (moreQuizResponse == 'y') {
                    continue;
                } else if (moreQuizResponse == 'n') {
-                   String subject = "Elemental Magic";
-                   String typeOfAssignment = "Quiz";
-                   Student.writeToFile(subject, typeOfAssignment, elemQuizGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(5, elemQuizGrades);
                    Menu.menuOrExit();
                    break;
                } else {
@@ -135,9 +133,8 @@ public class Grades {
                if (moreQuizResponse == 'y') {
                    continue;
                } else if (moreQuizResponse == 'n') {
-                   String subject = "Necromancy";
-                   String typeOfAssignment = "Quiz";
-                   Student.writeToFile(subject, typeOfAssignment, necroQuizGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(9, necroQuizGrades);
                    Menu.menuOrExit();
                    break;
                } else {
@@ -186,9 +183,8 @@ public class Grades {
                     continue;
                 }
                 else if (moreHomeworkResponse == 'n') {
-                    String subject = "Alchemy";
-                    String typeOfAssignment = "Homework";
-                    Student.writeToFile(subject, typeOfAssignment, alchHomeworkGrades);
+                    System.out.println("Your grades have been saved.");
+                    Student.editFile(0, alchHomeworkGrades); ;
                     Menu.menuOrExit();
                     break;
                 }
@@ -223,9 +219,8 @@ public class Grades {
                    continue;
                }
                else if (moreHomeworkResponse == 'n') {
-                   String subject = "Elemental Magic";
-                   String typeOfAssignment = "Homework";
-                   Student.writeToFile(subject, typeOfAssignment, elemHomeworkGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(4, elemHomeworkGrades);
                    Menu.menuOrExit();
                    break;
                }
@@ -259,12 +254,11 @@ public class Grades {
                char moreHomeworkResponse = homeworkInput.next().toLowerCase().charAt(0);
 
                if (moreHomeworkResponse == 'y') {
+                   System.out.println("Your grades have been saved.");
                    continue;
                }
                else if (moreHomeworkResponse == 'n') {
-                   String subject = "Necromancy";
-                   String typeOfAssignment = "Homework";
-                   Student.writeToFile(subject, typeOfAssignment, necroHomeworkGrades);
+                   Student.editFile(8, necroHomeworkGrades);
                    Menu.menuOrExit();
                    break;
                }
@@ -312,9 +306,8 @@ public class Grades {
                     continue;
                 }
                 else if (moreExamResponse == 'n') {
-                    String subject = "Alchemy";
-                    String typeOfAssignment = "Exam";
-                    Student.writeToFile(subject, typeOfAssignment, alchExamGrades);
+                    System.out.println("Your grades have been saved.");
+                    Student.editFile(2, alchExamGrades);
                     Menu.menuOrExit();
                     break;
                 }
@@ -348,9 +341,8 @@ public class Grades {
                 if (moreExamResponse == 'y') {
                     continue;
                 } else if (moreExamResponse == 'n') {
-                    String subject = "Elemental Magic";
-                    String typeOfAssignment = "Exam";
-                    Student.writeToFile(subject, typeOfAssignment, elemExamGrades);
+                    System.out.println("Your grades have been saved.");
+                    Student.editFile(6, elemExamGrades);
                     Menu.menuOrExit();
                     break;
                 } else {
@@ -383,9 +375,8 @@ public class Grades {
                 if (moreExamResponse == 'y') {
                     continue;
                 } else if (moreExamResponse == 'n') {
-                    String subject = "Necromancy";
-                    String typeOfAssignment = "Exam";
-                    Student.writeToFile(subject, typeOfAssignment, necroExamGrades);
+                    System.out.println("Your grades have been saved.");
+                    Student.editFile(10, necroExamGrades);
                     Menu.menuOrExit();
                     break;
                 } else {
@@ -432,9 +423,8 @@ public class Grades {
                    continue;
                }
                else if (moreProjectResponse == 'n') {
-                   String subject = "Alchemy";
-                   String typeOfAssignment = "Project";
-                   Student.writeToFile(subject, typeOfAssignment, alchProjectGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(3, alchProjectGrades);
                    Menu.menuOrExit();
                    break;
                }
@@ -468,9 +458,8 @@ public class Grades {
                if (moreProjectResponse == 'y') {
                    continue;
                } else if (moreProjectResponse == 'n') {
-                   String subject = "Elemental Magic";
-                   String typeOfAssignment = "Project";
-                   Student.writeToFile(subject, typeOfAssignment, elemProjectGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(7, elemProjectGrades);
                    Menu.menuOrExit();
                    break;
                } else {
@@ -504,9 +493,8 @@ public class Grades {
                    continue;
                }
                else if (moreProjectResponse == 'n') {
-                   String subject = "Necromancy";
-                   String typeOfAssignment = "Project";
-                   Student.writeToFile(subject, typeOfAssignment, necroProjectGrades);
+                   System.out.println("Your grades have been saved.");
+                   Student.editFile(11, necroProjectGrades);
                    Menu.menuOrExit();
                    break;
                }
@@ -606,31 +594,6 @@ public class Grades {
    }
 
    /*
-    * This method reads the student's text file and prints all saved grades to console.
-    */
-   public static void printAllGrades() {
-       System.out.println("If no grades appear, you have not saved any to your file.");
-       FileReader reader = null;
-       try {
-           reader = new FileReader(Student.studentTextFile);
-       }
-       catch (FileNotFoundException e) {
-           e.printStackTrace();
-       }
-       try (BufferedReader buffReader = new BufferedReader(reader)) {
-           String line;
-
-           while ((line = buffReader.readLine()) != null) {
-               System.out.println(line.substring(2)); // need to edit this so it does not print ")" for the last 3 lines when viewing all grades
-           }
-       }
-       catch (
-               IOException fileError) {
-           System.out.println("File error: " + fileError.getStackTrace());
-       }
-   }
-
-   /*
     * This method reads the student's text file and prints out specific course grades
     *
     * @param lineNumberOfGrades Selects the line of the text file containing specified grades
@@ -647,7 +610,13 @@ public class Grades {
             for (int i = 1; i < lineNumberOfGrades; i++) {
                 br.readLine();
             }
-            System.out.println(br.readLine().substring(2));
+            if (lineNumberOfGrades > 9) {
+                System.out.println(br.readLine().substring(4));
+            }
+            else {
+                System.out.println(br.readLine().substring(3));
+            }
+
         }
         catch (IOException e) {
             e.printStackTrace();
