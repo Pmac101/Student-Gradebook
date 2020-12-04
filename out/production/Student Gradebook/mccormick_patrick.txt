@@ -1,12 +1,12 @@
-0) Alchemy Homework:[100][99][88] [99]
-1) Alchemy Quiz:[99][100, 100][12]
-2) Alchemy Exam:90
-3) Alchemy Project: 81
+0) Alchemy Homework:
+1) Alchemy Quiz:[100] [99] [98]
+2) Alchemy Exam:
+3) Alchemy Project:
 4) Elemental Magic Homework:
 5) Elemental Magic Quiz:
-6) Elemental Magic Exam:[55]
+6) Elemental Magic Exam:
 7) Elemental Magic Project:
 8) Necromancy Homework:
 9) Necromancy Quiz:
 10) Necromancy Exam:
-11) Necromancy Project:[100]
+11) Necromancy Project:[12] [100, 99] [80]

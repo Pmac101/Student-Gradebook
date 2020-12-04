@@ -1,9 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  *Grades Class contains various methods for adding different types of grades as well as methods regarding
@@ -36,7 +35,6 @@ public class Grades {
 
        if (course == 1) {
            while (true) {
-               // need code to verify input is an integer as well as code to limit input scores to 0-100
                System.out.println("Please enter your Quiz grade: ");
                int alchQuizScore = quizInput.nextInt();
                System.out.println("You entered <" + alchQuizScore + "> \nIs this correct? \n[y]Yes [n]No");
@@ -74,7 +72,6 @@ public class Grades {
        }
        else if (course == 2) {
            while (true) {
-               // need code to verify input is an integer as well as code to limit input scores to 0-100
                System.out.println("Please enter your Quiz grade: ");
                int elemQuizScore = quizInput.nextInt();
                System.out.println("You entered <" + elemQuizScore + "> \nIs this correct? \n[y]Yes [n]No");
@@ -110,7 +107,6 @@ public class Grades {
        }
        else if (course == 3) {
            while (true) {
-               //need code to verify input is an integer as well as code to limit input scores to 0-100
                System.out.println("Please enter your Quiz grade: ");
                int necroQuizScore = quizInput.nextInt();
                System.out.println("You entered <" + necroQuizScore + "> \nIs this correct? \n[y]Yes [n]No");
@@ -144,7 +140,6 @@ public class Grades {
            }
            Menu.mainMenu();
        }
-
    }
 
     /*
@@ -154,7 +149,6 @@ public class Grades {
      * @param course Directs user to their chosen course
      */
    public static void addHomework(int course) {
-       //need code to verify input is an integer as well as code to limit input scores to 1-100
        Scanner homeworkInput = new Scanner(System.in);
        Scanner isInputCorrect = new Scanner(System.in);
 
@@ -230,7 +224,6 @@ public class Grades {
                }
            }
            Menu.mainMenu();
-
        }
        else if (course == 3) {
            while (true) {
@@ -278,7 +271,6 @@ public class Grades {
      * @param course Directs user to their chosen course
      */
    public static void addExam(int course) {
-       //probably need code to verify input is an integer as well as code to limit input scores to 1-100
        Scanner examInput = new Scanner(System.in);
        Scanner isInputCorrect = new Scanner(System.in);
 
@@ -395,7 +387,6 @@ public class Grades {
      * @param course Directs user to their chosen course
      */
    public static void addProject(int course) {
-       //probably need code to verify input is an integer as well as code to limit input scores to 1-100
        Scanner projectInput = new Scanner(System.in);
        Scanner isInputCorrect = new Scanner(System.in);
 
@@ -519,7 +510,6 @@ public class Grades {
            int courseChoice = courseInput.nextInt();
 
            if (courseChoice == 1) {
-               //alchemy
                Scanner alchemyInput = new Scanner(System.in);
                System.out.println("Which type of grade would you like to enter for Alchemy? \n[1] Homework" +
                        "\n[2] Quiz \n[3] Exam \n[4] Project");
@@ -542,7 +532,6 @@ public class Grades {
                }
            }
            else if (courseChoice == 2) {
-            //elemental magic
                Scanner elementalInput = new Scanner(System.in);
                System.out.println("Which type of grade would you like to enter for Elemental Magic? \n[1] Homework" +
                        "\n[2] Quiz \n[3] Exam \n[4] Project");
@@ -565,7 +554,6 @@ public class Grades {
                }
            }
            else if (courseChoice == 3) {
-            //necromancy
                Scanner necroInput = new Scanner(System.in);
                System.out.println("Which type of grade would you like to enter for Necromancy? \n[1] Homework" +
                        "\n[2] Quiz \n[3] Exam \n[4] Project");
@@ -598,7 +586,7 @@ public class Grades {
     *
     * @param lineNumberOfGrades Selects the line of the text file containing specified grades
     */
-    public static void printSpecificGrades(int lineNumberOfGrades) {
+    public static void printSpecificGrades(int lineNumberOfGrades, String gradeType) {
         FileReader reader = null;
         try {
             reader = new FileReader(Student.studentTextFile);
@@ -610,13 +598,21 @@ public class Grades {
             for (int i = 1; i < lineNumberOfGrades; i++) {
                 br.readLine();
             }
-            if (lineNumberOfGrades > 9) {
-                System.out.println(br.readLine().substring(4));
+            ArrayList<String> gradesString = new ArrayList<>();
+            ArrayList<Integer> gradesInteger = new ArrayList<>();
+            Pattern pat = Pattern.compile("-?\\d+");
+            Matcher match = pat.matcher(br.readLine().substring(2));
+            while (match.find()) {
+                gradesString.add(match.group());
             }
-            else {
-                System.out.println(br.readLine().substring(3));
+            for (String nums : gradesString) {
+                gradesInteger.add(Integer.parseInt(nums));
             }
-
+            int x = 0;
+            for (int j : gradesInteger) {
+                x += 1;
+                System.out.println(gradeType + " " + x + ": " + j);
+            }
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -27,7 +27,6 @@ public class Student {
     public static void studentLogin() {
         Scanner studentInput = new Scanner(System.in);
 
-        //rewrite output for while loop!!!!!!
         while (true) {
             System.out.println("Welcome to the Student Gradebook. \nPlease enter your first name to begin.");
             String userFirstName = studentInput.nextLine().toLowerCase();
@@ -47,7 +46,7 @@ public class Student {
             } else if (isInputCorrect == 'n') {
                 System.out.println("Returning to Welcome screen.");
             } else {
-                System.out.println("Invalid input. You must enter [y] for Yes or [n] for No. Now returning to " +
+                System.out.println("Invalid input. You must enter [y] for Yes or [n] for No. Returning to " +
                         "Welcome screen");
             }
         }
@@ -102,6 +101,7 @@ public class Student {
      * @param arrName      ArrayList of grades being written to the text file
      */
     public static void editFile (int editThisLine, ArrayList<Integer> arrName) {
+        //This method functions properly
         try {
             Path filePath = Paths.get(String.valueOf(studentTextFile));
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);

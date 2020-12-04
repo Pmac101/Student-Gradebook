@@ -41,9 +41,14 @@ public class Calculations {
             double y = integerArrList.size() * weight;
             double weightAverage = x/y;
             if (outputData == 'y') {
-                System.out.println("Weighted Average: " + String.format("%.2f", weightAverage) + "%");
+                if (Double.isNaN(weightAverage)) {
+                    System.out.println("You currently have no grades on file of that type.");
+                }
+                else {
+                    System.out.println("Weighted Average: " + String.format("%.2f", weightAverage) + "%");
+                }
             }
-            if (outputData == 'n') {
+            else if (outputData == 'n') {
                 assignmentTotals.add(weightAverage);
             }
         }
